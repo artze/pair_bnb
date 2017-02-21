@@ -6,14 +6,16 @@
 </head>
 <body>
   <div id="header">
-    <%= link_to 'Home', root_path %> <br>
+
     <% if signed_in? -%>
 
       <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
     <% else -%>
       <%= link_to t(".sign-up"), sign_up_path %> <br>
-      <%= link_to t(".sign_in"), sign_in_path %>
+      <%= link_to t(".sign_in"), sign_in_path %> <br>
     <% end %>
+    <%= link_to 'Home', root_path %> <br>
+    <%= link_to 'Sign in with Facebook', '/auth/facebook'%>
   </div>
 
   <div id="flash">
