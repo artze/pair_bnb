@@ -13,9 +13,9 @@ class ListingsController < ApplicationController
 		else
 			@listing = current_user.listings.new(listing_params)
 			if @listing.save
-				'success'
+				render text: 'success'
 			else
-				'fail'
+				render text: 'fail'
 			end
 		end
 	end

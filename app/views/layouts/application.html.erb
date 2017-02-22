@@ -16,7 +16,8 @@
     <% end %>
     <%= link_to 'Home', root_path %> <br>
     <% if signed_in? %> 
-      <%= link_to 'View Listings', listings_path %>
+      <%= link_to 'View Listings', listings_path %> <br>
+      <%= link_to 'List your property', new_listing_path %>
     <% end %>
     <br>
     <%= link_to 'Sign in with Facebook', '/auth/facebook'%>
