@@ -1,0 +1,44 @@
+<div>
+	<%= f.label :title%>
+	<%= f.text_field :title %>
+</div>
+
+<div>
+	<%= f.label :description%>
+	<%= f.text_area :description %>
+</div>
+
+<div>
+	<%= f.label :price %>
+	<%= f.number_field :price %>
+</div>
+
+<div>
+	<%= f.label :address %>
+	<%= f.text_field :address %>
+</div>
+
+<div>
+	<%= f.label :home_type %>
+	<%= f.select(:home_type, options_for_select([['House', 1], ['Apartment', 2], ['Villa', 3], ['Condominium', 4]], 1)) %>
+</div>
+
+<div>
+	<%= f.label :room_type %>
+	<%= f.select(:room_type, options_for_select([['shared', 1], ['private', 2], ['entire property', 3]], 1)) %>
+</div>
+
+<div>
+	<%= f.label :bedroom %>
+	<%= f.select(:bedroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1)) %>
+</div>
+
+<div>
+	<%= f.label :bathroom %>
+	<%= f.select(:bathroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1)) %>
+</div>
+
+<div>
+	<%= f.label :accommodate %>
+	<%= f.select(:accommodate, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], 1)) %>
+</div>
