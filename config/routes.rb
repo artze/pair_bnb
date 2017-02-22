@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'static#index'
 
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
-  resource :session, controller: "clearance/sessions", only: [:create]
+  resource :session, only: [:create]
 
   resources :users, controller: 'users', only: [:create, :edit, :update] do
     resource :password,

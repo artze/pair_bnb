@@ -1,13 +1,15 @@
-<%= form_for :session, url: session_path do |form| %>
+<%= form_for :session, url: session_path, html: {id: "new_session"}, remote: true do |form| %>
   <div class="text-field">
     <%= form.label :email %>
-    <%= form.text_field :email, type: 'email' %>
+    <%= form.text_field :email, type: 'text' %>
   </div>
 
   <div class="password-field">
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
+
+  <div class="user-error"></div>
 
   <div class="submit-field">
     <%= form.submit %>
