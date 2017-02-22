@@ -1,4 +1,4 @@
-<% Listing.all.each do |l| %>
+<% @listings.each do |l| %>
 	<p>Owner: <%= l.user.first_name + ' ' + l.user.last_name %> </p>
 	<p>Title: <%= l.title %> </p>
 	<p>Description: <%= l.description %> </p>
