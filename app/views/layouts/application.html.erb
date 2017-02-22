@@ -15,6 +15,10 @@
       <%= link_to t(".sign_in"), sign_in_path %> <br>
     <% end %>
     <%= link_to 'Home', root_path %> <br>
+    <% if signed_in? %> 
+      <%= link_to 'View Listings', listings_path %>
+    <% end %>
+    <br>
     <%= link_to 'Sign in with Facebook', '/auth/facebook'%>
   </div>
 

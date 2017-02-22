@@ -1,0 +1,13 @@
+<% Listing.all.each do |l| %>
+	<p>Owner: <%= l.user.first_name + ' ' + l.user.last_name %> </p>
+	<p>Title: <%= l.title %> </p>
+	<p>Description: <%= l.description %> </p>
+	<p>Price: <%= l.price %> </p>
+	<p>Address: <%= l.address %> </p>
+	<p>Type: <%= l.home_type %> </p>
+	<p>Room type: <%= l.room_type %> </p>
+	<p>Number of Bedrooms: <%= l.bedroom %> </p>
+	<p>Number of Bathrooms: <%= l.bathroom %> </p>
+	<p>Accommodates: <%= l.accommodate %> guest(s) </p>
+	<hr>
+<% end %>
