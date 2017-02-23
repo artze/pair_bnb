@@ -1,0 +1,8 @@
+<br>
+<%= form_for @reservation do |f| %>
+	<%= render partial: '/reservations/form', locals: {f: f}%>
+	
+	<div>
+		<%= f.submit %>
+	</div>
+<% end %>
