@@ -15,5 +15,6 @@
 		<li> <%= elm.tag_name %> </li>
 		<% end %>
 	</ul>
+	<%= link_to 'Book now', new_listing_reservation_path(l.id) %>
 	<hr>
 <% end %>
