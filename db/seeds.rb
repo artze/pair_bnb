@@ -42,3 +42,33 @@ ActiveRecord::Base.transaction do
 		Listing.create(listing)
 	end
 end
+
+tag_names = ['Smoker', 'Pool', 'Internet', 'Gym', 'TV', 'Kithchen', 'Air-conditioner', 'Pet friendly']
+
+ActiveRecord::Base.transaction do
+	tag_names.each do |elm|
+		Tag.create(tag_name: elm)
+	end
+end
+
+listing_ids = []
+tag_ids = []
+
+Listing.all.each do |elm|
+	listing_ids << elm.id
+end
+
+Tag.all.each do |elm|
+	tag_ids << elm.id
+end
+
+ActiveRecord::Base.transaction do
+	listing_ids.each do |listing_id|
+		available_tag_ids = tag_ids
+		rand(1..6).times do
+			selected_tag_id = available_tag_ids.sample
+			available_tag_ids -= [selected_tag_id]
+			ListingsTag.create(listing_id: listing_id, tag_id: selected_tag_id)
+		end
+	end
+end

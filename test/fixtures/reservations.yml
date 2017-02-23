@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  booking_start: 2017-02-23
+  booking_end: 2017-02-23
+  user: one
+  listing: one
+
+two:
+  booking_start: 2017-02-23
+  booking_end: 2017-02-23
+  user: two
+  listing: two

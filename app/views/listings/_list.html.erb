@@ -9,5 +9,11 @@
 	<p>Number of Bedrooms: <%= l.bedroom %> </p>
 	<p>Number of Bathrooms: <%= l.bathroom %> </p>
 	<p>Accommodates: <%= l.accommodate %> guest(s) </p>
+	<p>Tags:</p>
+	<ul>
+		<% l.tags.each do |elm| %>
+		<li> <%= elm.tag_name %> </li>
+		<% end %>
+	</ul>
 	<hr>
 <% end %>
