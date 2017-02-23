@@ -8,12 +8,12 @@ class ReservationsController < ApplicationController
 		@reservation.listing_id = params[:listing_id]
 		if @reservation.check_reservation_dates
 			if @reservation.save
-				redirect_to root_path, notice: 'Reservation successful'
+				redirect_to listing_path(params[:listing_id]), notice: 'You have successfully booked the property below!'
 			else
-				redirect_to new_listing_reservation_path, notice: 'Reservation failed'
+				redirect_to new_listing_reservation_path, notice: @reservation.errors[:reservation_dates].first
 			end
 		else
-			redirect_to new_listing_reservation_path, notice: 'Reservation failed'
+			redirect_to new_listing_reservation_path, notice: 'Property not available on these dates.'
 		end
 	end
 

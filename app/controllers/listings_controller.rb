@@ -3,6 +3,10 @@ class ListingsController < ApplicationController
 		@listings = Listing.paginate(page: params[:page], per_page: 10)
 	end
 
+	def show
+		@listing = Listing.find_by(id: params[:id])
+	end
+
 	def new
 		@listing = Listing.new
 	end

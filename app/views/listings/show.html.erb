@@ -1,0 +1,16 @@
+<p>Owner: <%= @listing.user.first_name + ' ' + @listing.user.last_name %> </p>
+<p>Title: <%= @listing.title %> </p>
+<p>Description: <%= @listing.description %> </p>
+<p>Price: <%= @listing.price %> </p>
+<p>Address: <%= @listing.address %> </p>
+<p>Type: <%= @listing.home_type %> </p>
+<p>Room type: <%= @listing.room_type %> </p>
+<p>Number of Bedrooms: <%= @listing.bedroom %> </p>
+<p>Number of Bathrooms: <%= @listing.bathroom %> </p>
+<p>Accommodates: <%= @listing.accommodate %> guest(s) </p>
+<p>Tags:</p>
+<ul>
+	<% @listing.tags.each do |elm| %>
+	<li> <%= elm.tag_name %> </li>
+	<% end %>
+</ul>

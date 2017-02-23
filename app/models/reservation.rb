@@ -13,13 +13,13 @@ class Reservation < ApplicationRecord
 
 	def booking_start_date_in_future
 		if self.booking_start < Date.today
-			errors.add(:booking_start, 'Check-in dates can\'t be in the past')
+			errors.add(:reservation_dates, 'Check-in dates can\'t be in the past')
 		end
 	end
 
 	def booking_end_date_after_booking_start_date
 		if self.booking_start > self.booking_end
-			errors.add(:booking_end, 'Check-out dates need to be after check-in')
+			errors.add(:reservation_dates, 'Check-out dates need to be after check-in')
 		end
 	end
 end
