@@ -8,14 +8,14 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		if (signed_in? == false)
+		if signed_out?
 			redirect_to sign_in_path
 		else
 			@listing = current_user.listings.new(listing_params)
 			if @listing.save
-				render text: 'success'
+				redirect_to listings_path, notice: 'Listing submission successful'
 			else
-				render text: 'fail'
+				redirect_to new_listing_path, notice: 'All fields are required'
 			end
 		end
 	end

@@ -20,12 +20,14 @@
       <%= link_to 'List your property', new_listing_path %>
     <% end %>
     <br>
+    <% if signed_out? %>
     <%= link_to 'Sign in with Facebook', '/auth/facebook'%>
+    <% end %>
   </div>
 
   <div id="flash">
     <% flash.each do |key, value| -%>
-      <div id="flash_<%= key %>"><%=h value %></div>
+      <div id="flash_<%= key %>"><%= value %></div>
     <% end %>
   </div>
 
