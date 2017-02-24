@@ -42,3 +42,11 @@
 	<%= f.label :accommodate %>
 	<%= f.select(:accommodate, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], 1)) %>
 </div>
+
+<div>
+	<p>Tags:</p>
+	<% Tag.all.each do |t| %>
+	<%= check_box_tag "listing[tag_ids][]", t.id %>
+	<%= t.tag_name %> <br>
+	<% end %>
+</div>

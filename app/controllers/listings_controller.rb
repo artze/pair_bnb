@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 	def index
-		@listings = Listing.paginate(page: params[:page], per_page: 10)
+		@listings = Listing.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
 	end
 
 	def show
@@ -27,6 +27,6 @@ class ListingsController < ApplicationController
 	private
 
 	def listing_params
-		params[:listing].permit(:title, :description, :price, :address, :home_type, :room_type, :bedroom, :bathroom, :accommodate, :user_id)
+		params[:listing].permit(:title, :description, :price, :address, :home_type, :room_type, :bedroom, :bathroom, :accommodate, :user_id, tag_ids: [])
 	end
 end
