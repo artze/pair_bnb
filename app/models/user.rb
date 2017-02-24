@@ -16,9 +16,17 @@ class User < ApplicationRecord
   	return x.token unless x.nil?
   end
 
+  def self.non_facebook_signup
+    @@facebook = false
+  end
+
+  def self.facebook_signup?
+    @@facebook = true
+  end
+
   private
 
   def password_optional?
-    true
+    true if @@facebook == true
   end
 end

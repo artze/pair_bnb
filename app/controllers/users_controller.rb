@@ -1,6 +1,7 @@
 class UsersController < Clearance::UsersController
 
 	def create
+		User.non_facebook_signup
 		new_user = User.new(user_params)
 		if new_user.save
 			sign_in(new_user)
