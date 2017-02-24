@@ -1,0 +1,7 @@
+<%= form_for @listing, html: { method: 'patch' }, url: user_listing_path(current_user, @listing) do |f| %>
+	<%= render partial: '/listings/form', locals: {f: f} %>
+
+	<div>
+		<%= f.submit %>
+	</div>
+<% end %>

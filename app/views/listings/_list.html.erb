@@ -15,6 +15,7 @@
 		<li> <%= elm.tag_name %> </li>
 		<% end %>
 	</ul>
-	<%= link_to 'Book now', new_listing_reservation_path(l.id) %>
+	<%= link_to 'Book now', new_listing_reservation_path(l) %>
+	<%= link_to 'Edit listing', edit_user_listing_path(current_user, l) if l.user.id == current_user.id %>
 	<hr>
 <% end %>

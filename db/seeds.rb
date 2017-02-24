@@ -43,7 +43,7 @@ ActiveRecord::Base.transaction do
 	end
 end
 
-tag_names = ['Smoker', 'Pool', 'Internet', 'Gym', 'TV', 'Kithchen', 'Air-conditioner', 'Pet friendly']
+tag_names = ['Smoker', 'Pool', 'Internet', 'Gym', 'TV', 'Kitchen', 'Air-conditioner', 'Pet friendly']
 
 ActiveRecord::Base.transaction do
 	tag_names.each do |elm|

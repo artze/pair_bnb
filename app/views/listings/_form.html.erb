@@ -45,8 +45,9 @@
 
 <div>
 	<p>Tags:</p>
+	<%= hidden_field_tag "listing[tag_ids][]", nil %>
 	<% Tag.all.each do |t| %>
-	<%= check_box_tag "listing[tag_ids][]", t.id %>
+	<%= check_box_tag "listing[tag_ids][]", t.id, @listing.tag_ids.include?(t.id) %>
 	<%= t.tag_name %> <br>
 	<% end %>
 </div>

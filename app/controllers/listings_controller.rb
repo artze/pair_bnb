@@ -1,6 +1,10 @@
 class ListingsController < ApplicationController
 	def index
-		@listings = Listing.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+		if params[:user_id]
+			@listings = Listing.where(user_id: params[:user_id]).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+		else
+			@listings = Listing.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+		end
 	end
 
 	def show
@@ -21,6 +25,19 @@ class ListingsController < ApplicationController
 			else
 				redirect_to new_listing_path, notice: 'All fields are required'
 			end
+		end
+	end
+
+	def edit
+		@listing = Listing.find_by(id: params[:id], user_id: current_user.id)
+	end
+
+	def update
+		@listing = Listing.find_by(id: params[:id], user_id: current_user.id)
+		if @listing.update(listing_params)
+			redirect_to listing_path(@listing), notice: 'Listing updated'
+		else
+			redirect_to edit_user_listing_path(current_user, @listing), notice: 'Update failed'
 		end
 	end
 

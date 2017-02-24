@@ -17,7 +17,8 @@
     <%= link_to 'Home', root_path %> <br>
     <% if signed_in? %> 
       <%= link_to 'View Listings', listings_path %> <br>
-      <%= link_to 'List your property', new_listing_path %>
+      <%= link_to 'List your property', new_user_listing_path(current_user.id) %> <br>
+      <%= link_to 'My Current Listings', user_listings_path(current_user.id) %>
     <% end %>
     <br>
     <% if signed_out? %>
