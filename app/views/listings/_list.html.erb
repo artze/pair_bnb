@@ -1,4 +1,9 @@
 <% @listings.each do |l| %>
+	<div>
+		<% l.images.each do |img| %>
+			<%= image_tag img.url(:thumb) %>
+		<% end %>
+	</div>
 	<p>Owner: <%= l.user.first_name + ' ' + l.user.last_name %> </p>
 	<p>Title: <%= l.title %> </p>
 	<p>Description: <%= l.description %> </p>

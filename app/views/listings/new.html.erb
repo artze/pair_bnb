@@ -1,4 +1,4 @@
-<%= form_for @listing do |f| %>
+<%= form_for @listing, url: user_listings_path(current_user), html: { multipart: true } do |f| %>
 	<%= render partial: '/listings/form', locals: {f: f} %>
 
 	<div>
