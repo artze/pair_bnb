@@ -48,6 +48,11 @@ class ListingsController < ApplicationController
 		redirect_to user_listings_path(current_user), notice: 'Listing removed'
 	end
 
+	def search
+		@listings = Listing.where(title: params[:title_search]).paginate(page: params[:page], per_page: 10)
+		render 'listings/index'
+	end
+
 	private
 
 	def listing_params

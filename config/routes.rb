@@ -19,5 +19,6 @@ Rails.application.routes.draw do
 
   resources :listings, only: [:index, :show] do
     resource :reservation, only: [:new, :create, :edit, :update, :destroy]
+    get 'search', on: :collection
   end
 end
