@@ -1,4 +1,6 @@
 class ListingsController < ApplicationController
+	before_action :require_login
+
 	def index
 		if params[:user_id]
 			@listings = Listing.where(user_id: params[:user_id]).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
@@ -41,9 +43,15 @@ class ListingsController < ApplicationController
 		end
 	end
 
+	def destroy 
+		Listing.find_by(id: params[:id], user_id: current_user.id).destroy
+		redirect_to user_listings_path(current_user), notice: 'Listing removed'
+	end
+
 	private
 
 	def listing_params
 		params[:listing].permit(:title, :description, :price, :address, :home_type, :room_type, :bedroom, :bathroom, :accommodate, :user_id, tag_ids: [])
 	end
+
 end
