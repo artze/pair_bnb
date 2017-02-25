@@ -20,7 +20,7 @@ class User < ApplicationRecord
     @@facebook = false
   end
 
-  def self.facebook_signup?
+  def self.facebook_signup
     @@facebook = true
   end
 

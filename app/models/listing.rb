@@ -5,4 +5,8 @@ class Listing < ApplicationRecord
   has_many :reservations, dependent: :destroy
   validates :title, :description, :price, :address, :home_type, :room_type, :bedroom, :bathroom, :accommodate, presence: true
   mount_uploaders :images, ImageUploader
+
+	def self.search(search_query)
+		where('LOWER(title) LIKE ?', "%#{search_query.downcase}%")
+	end  
 end
