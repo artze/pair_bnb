@@ -38,7 +38,10 @@ ActiveRecord::Base.transaction do
 		listing['title'] = Faker::TwinPeaks.location
 		listing['description'] = Faker::TwinPeaks.quote
 		listing['price'] = Faker::Number.decimal(3, 2)
-		listing['address'] = Faker::Address.street_address + ', ' + Faker::Address.zip + ' ' +Faker::Address.city + ', ' + Faker::Address.country
+		listing['street_address'] = Faker::Address.street_address
+		listing['postcode'] = Faker::Address.zip
+		listing['city'] = Faker::Address.city
+		listing['country'] = Faker::Address.country
 		listing['home_type'] = ['House', 'Apartment', 'Villa', 'Condominium'].sample
 		listing['room_type'] = ['shared', 'private', 'entire property'].sample
 		listing['bedroom'] = rand(1..3)
