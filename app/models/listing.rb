@@ -7,6 +7,6 @@ class Listing < ApplicationRecord
   mount_uploaders :images, ImageUploader
 
 	def self.search(search_query)
-		where('LOWER(title) LIKE ?', "%#{search_query.downcase}%")
+		where('LOWER(country) LIKE ?', "%#{search_query.downcase}%")
 	end  
 end

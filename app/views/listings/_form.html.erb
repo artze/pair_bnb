@@ -1,76 +1,100 @@
-<div>
-	<%= f.label :title%>
-	<%= f.text_field :title %>
+<div class="form-group">
+	<%= f.label :title, class: "col-sm-2 control-label"%>
+	<div class="col-sm-10">
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :description%>
-	<%= f.text_area :description %>
+<div class="form-group">
+	<%= f.label :description, class: "col-sm-2 control-label"%>
+	<div class="col-sm-10">
+		<%= f.text_area :description, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :price %>
-	<%= f.number_field :price %>
+<div class="form-group">
+	<%= f.label :price, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.number_field :price, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :street_address %>
-	<%= f.text_field :street_address %>
+<div class="form-group">
+	<%= f.label :street_address, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.text_field :street_address, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :postcode %>
-	<%= f.text_field :postcode %>
+<div class="form-group">
+	<%= f.label :postcode, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.text_field :postcode, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :city %>
-	<%= f.text_field :city %>
+<div class="form-group">
+	<%= f.label :city, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.text_field :city, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :country %>
-	<%= f.text_field :country %>
+<div class="form-group">
+	<%= f.label :country, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.text_field :country, class: "form-control" %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :home_type %>
-	<%= f.select(:home_type, options_for_select([['House', 1], ['Apartment', 2], ['Villa', 3], ['Condominium', 4]], 1)) %>
+<div class="form-group">
+	<%= f.label :home_type, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.select(:home_type, options_for_select([['House', 1], ['Apartment', 2], ['Villa', 3], ['Condominium', 4]], 1), {}, {class: "form-control"}) %>
+	</div>
+</div class="form-group">
+
+<div class="form-group">
+	<%= f.label :room_type, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.select(:room_type, options_for_select([['shared', 1], ['private', 2], ['entire property', 3]], 1), {}, {class: "form-control"}) %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :room_type %>
-	<%= f.select(:room_type, options_for_select([['shared', 1], ['private', 2], ['entire property', 3]], 1)) %>
+<div class="form-group">
+	<%= f.label :bedroom, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.select(:bedroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1), {}, {class: "form-control"}) %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :bedroom %>
-	<%= f.select(:bedroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1)) %>
+<div class="form-group">
+	<%= f.label :bathroom, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.select(:bathroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1), {}, {class: "form-control"}) %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :bathroom %>
-	<%= f.select(:bathroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1)) %>
+<div class="form-group">
+	<%= f.label :accommodate, class: "col-sm-2 control-label" %>
+	<div class="col-sm-10">
+		<%= f.select(:accommodate, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], 1), {}, {class: "form-control"}) %>
+	</div>
 </div>
 
-<div>
-	<%= f.label :accommodate %>
-	<%= f.select(:accommodate, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], 1)) %>
-</div>
-
-<div>
-	<p>Tags:</p>
+<div class="form-group">
+	<p><%= f.label 'Tags:', class: "col-sm-2 control-label" %></p>
 	<%= hidden_field_tag "listing[tag_ids][]", nil %>
-	<% Tag.all.each do |t| %>
-	<%= check_box_tag "listing[tag_ids][]", t.id, @listing.tag_ids.include?(t.id) %>
-	<%= t.tag_name %> <br>
-	<% end %>
+	<div class="input-group">
+		<% Tag.all.each do |t| %>
+		<%= check_box_tag "listing[tag_ids][]", t.id, @listing.tag_ids.include?(t.id) %>
+		<%= t.tag_name %> <br>
+		<% end %>
+	</div>
 </div>
 
 
-<div>
-	<br>
-	<%= f.label 'Upload a picture' %> <br>
+<div class="form-group">
+	<%= f.label 'Upload pictures', class: "col-sm-2 control-label" %>
 	<%= f.file_field :images, multiple: true %>
 </div>
-<br>
