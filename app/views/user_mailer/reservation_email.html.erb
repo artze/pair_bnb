@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+	<h1>Your PairBnb booking</h1>
+	<p>
+		Hi, <%= @user.first_name %>. Your booking is confirmed:
+	</p>
+	<p>
+		Property name: <a href="<%= listing_url(@reservation.listing) %>"> <%= @reservation.listing.title %> </a> <br>
+		Your host: <%= @reservation.listing.user.first_name + ' ' + @reservation.listing.user.last_name + ' ' + @reservation.listing.user.email %> <br>
+		Booking reference: <%= @reservation.id %> <br>
+		Check-in date: <%= @reservation.booking_start %> <br>
+		Check-out date: <%= @reservation.booking_end %>
+	</p>
+	<p>
+		Thank you for choosing PairBnb!
+	</p>
+</body>
+</html>
