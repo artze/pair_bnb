@@ -1,0 +1,10 @@
+<% if @reservations %>
+	<table class="table">
+		<tr>
+			<th>Property</th>
+			<th>Check-in date</th>
+			<th>Check-out date</th>
+		</tr>
+		<%= render partial: '/reservations/list' %>
+	</table>
+<% end %>

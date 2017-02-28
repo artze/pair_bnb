@@ -2,7 +2,7 @@
 <p>Title: <%= @listing.title %> </p>
 <p>Description: <%= @listing.description %> </p>
 <p>Price: <%= @listing.price %> </p>
-<p>Address: <%= @listing.address %> </p>
+<p>Address: <%= @listing.street_address + ', ' + @listing.postcode + ' ' + @listing.city + ', ' + @listing.country %> </p>
 <p>Type: <%= @listing.home_type %> </p>
 <p>Room type: <%= @listing.room_type %> </p>
 <p>Number of Bedrooms: <%= @listing.bedroom %> </p>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, controller: 'users', only: [:create, :edit, :update] do
     resource :password, controller: "clearance/passwords", only: [:create, :edit, :update]
     resources :listings, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :reservations, only: [:index, :show]
   end
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
 
   resources :listings, only: [:index, :show] do
-    resource :reservation, only: [:new, :create, :edit, :update, :destroy]
+    resource :reservation, only: [:new, :create]
     get 'search', on: :collection
   end
 end

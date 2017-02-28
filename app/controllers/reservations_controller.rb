@@ -1,4 +1,13 @@
 class ReservationsController < ApplicationController
+	def index
+		@reservations = Reservation.where(user_id: current_user.id)
+		flash.now[:notice] = 'You have not made any bookings' if @reservations.nil?
+	end
+
+	def show
+
+	end
+
 	def new
 		@reservation = Reservation.new
 	end
@@ -8,12 +17,15 @@ class ReservationsController < ApplicationController
 		@reservation.listing_id = params[:listing_id]
 		if @reservation.check_reservation_dates
 			if @reservation.save
-				redirect_to listing_path(params[:listing_id]), success: 'You have successfully booked the property below!'
+				flash[:success] = 'You have successfully booked the property below!'
+				redirect_to listing_path(params[:listing_id])
 			else
-				redirect_to new_listing_reservation_path, error: @reservation.errors[:reservation_dates].first
+				flash[:error] = @reservation.errors[:reservation_dates].first
+				redirect_to new_listing_reservation_path
 			end
 		else
-			redirect_to new_listing_reservation_path, error: 'Property not available on these dates.'
+			flash[:error] = 'Property not available on these dates.'
+			redirect_to new_listing_reservation_path
 		end
 	end
 

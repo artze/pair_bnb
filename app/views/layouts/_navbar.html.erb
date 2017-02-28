@@ -30,6 +30,7 @@
               <li> <%= link_to 'My listings', user_listings_path(current_user) %> </li>
             </ul>
           </li>
+          <li><%= link_to 'My Bookings', user_reservations_path(current_user) %></li>
         <% end %>
       </ul>
       <form class="navbar-form navbar-left">

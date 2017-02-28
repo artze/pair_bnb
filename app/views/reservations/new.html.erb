@@ -10,6 +10,6 @@ Owner of this property: <%= selected_listing.user.first_name + ' ' + selected_li
 	<%= render partial: '/reservations/form', locals: {f: f}%>
 	
 	<div>
-		<%= f.submit %>
+		<%= f.submit 'Book now', class: 'btn' %>
 	</div>
 <% end %>
