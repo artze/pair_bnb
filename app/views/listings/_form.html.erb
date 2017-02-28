@@ -1,89 +1,89 @@
 <div class="form-group">
-	<%= f.label :title, class: "col-sm-2 control-label"%>
-	<div class="col-sm-10">
+	<%= f.label :title, class: "col-md-3 control-label"%>
+	<div class="col-md-9">
 		<%= f.text_field :title, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :description, class: "col-sm-2 control-label"%>
-	<div class="col-sm-10">
+	<%= f.label :description, class: "col-md-3 control-label"%>
+	<div class="col-md-9">
 		<%= f.text_area :description, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :price, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :price, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.number_field :price, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :street_address, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :street_address, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.text_field :street_address, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :postcode, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :postcode, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.text_field :postcode, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :city, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :city, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.text_field :city, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :country, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :country, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.text_field :country, class: "form-control" %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :home_type, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :home_type, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.select(:home_type, options_for_select([['House', 1], ['Apartment', 2], ['Villa', 3], ['Condominium', 4]], 1), {}, {class: "form-control"}) %>
 	</div>
 </div class="form-group">
 
 <div class="form-group">
-	<%= f.label :room_type, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :room_type, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.select(:room_type, options_for_select([['shared', 1], ['private', 2], ['entire property', 3]], 1), {}, {class: "form-control"}) %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :bedroom, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :bedroom, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.select(:bedroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1), {}, {class: "form-control"}) %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :bathroom, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :bathroom, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.select(:bathroom, options_for_select([[1, 1], [2, 2], [3, 3]], 1), {}, {class: "form-control"}) %>
 	</div>
 </div>
 
 <div class="form-group">
-	<%= f.label :accommodate, class: "col-sm-2 control-label" %>
-	<div class="col-sm-10">
+	<%= f.label :accommodate, class: "col-md-3 control-label" %>
+	<div class="col-md-9">
 		<%= f.select(:accommodate, options_for_select([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], 1), {}, {class: "form-control"}) %>
 	</div>
 </div>
 
 <div class="form-group">
-	<p><%= f.label 'Tags:', class: "col-sm-2 control-label" %></p>
+	<p><%= f.label 'Tags:', class: "col-md-3 control-label" %></p>
 	<%= hidden_field_tag "listing[tag_ids][]", nil %>
 	<div class="input-group">
 		<% Tag.all.each do |t| %>
@@ -95,6 +95,8 @@
 
 
 <div class="form-group">
-	<%= f.label 'Upload pictures', class: "col-sm-2 control-label" %>
-	<%= f.file_field :images, multiple: true %>
+	<%= f.label 'Upload pictures', class: "col-md-3 control-label" %>
+	<div class="col-md-9">
+		<%= f.file_field :images, multiple: true %>
+	</div>
 </div>
