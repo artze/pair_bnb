@@ -1,0 +1,10 @@
+<div class="col-md-8 col-md-offset-2">
+	<h2>List your property</h2>
+</div>
+<%= form_for @listing, url: user_listings_path(current_user), html: { multipart: true, class: "form-horizontal col-md-8 col-md-offset-2 listing-form-box" } do |f| %>
+	<%= render partial: '/listings/form', locals: {f: f} %>
+
+	<div>
+		<%= f.submit 'Submit', class: "btn pull-right" %>
+	</div>
+<% end %>

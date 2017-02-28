@@ -1,0 +1,15 @@
+<br>
+
+<div>
+<% selected_listing = Listing.find_by(id: params[:listing_id]) %>
+You are about to book: <%= selected_listing.title %> <br>
+Owner of this property: <%= selected_listing.user.first_name + ' ' + selected_listing.user.last_name %>
+</div>
+<br>
+<%= form_for @reservation, url: listing_reservation_path do |f| %>
+	<%= render partial: '/reservations/form', locals: {f: f}%>
+	
+	<div>
+		<%= f.submit 'Book now', class: 'btn' %>
+	</div>
+<% end %>

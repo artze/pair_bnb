@@ -1,0 +1,37 @@
+class ReservationsController < ApplicationController
+	def index
+		@reservations = Reservation.where(user_id: current_user.id)
+		flash.now[:notice] = 'You have not made any bookings' if @reservations.nil?
+	end
+
+	def show
+
+	end
+
+	def new
+		@reservation = Reservation.new
+	end
+
+	def create
+		@reservation = current_user.reservations.new(reservation_params)
+		@reservation.listing_id = params[:listing_id]
+		if @reservation.check_reservation_dates
+			if @reservation.save
+				flash[:success] = 'You have successfully booked the property below!'
+				redirect_to listing_path(params[:listing_id])
+			else
+				flash[:error] = @reservation.errors[:reservation_dates].first
+				redirect_to new_listing_reservation_path
+			end
+		else
+			flash[:error] = 'Property not available on these dates.'
+			redirect_to new_listing_reservation_path
+		end
+	end
+
+	private
+
+	def reservation_params
+		params[:reservation].permit(:user_id, :listing_id, :booking_start, :booking_end)
+	end
+end
