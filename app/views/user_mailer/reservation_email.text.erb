@@ -1,0 +1,11 @@
+Your PairBnb booking
+
+Hi, <%= @user.first_name %>. Your booking is confirmed:
+
+Property name: <%= @reservation.listing.title %>
+Your host: <%= @reservation.listing.user.first_name + ' ' + @reservation.listing.user.last_name + ' ' + @reservation.listing.user.email %>
+Booking reference: <%= @reservation.id %>
+Check-in date: <%= @reservation.booking_start %>
+Check-out date: <%= @reservation.booking_end %>
+
+Thank you for choosing PairBnb!

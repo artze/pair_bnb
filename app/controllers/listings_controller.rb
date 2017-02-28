@@ -23,9 +23,11 @@ class ListingsController < ApplicationController
 		else
 			@listing = current_user.listings.new(listing_params)
 			if @listing.save
-				redirect_to listings_path, success: 'Listing submission successful'
+				flash[:success] = 'Listing submitted!'
+				redirect_to listings_path
 			else
-				redirect_to new_listing_path, error: 'All fields are required'
+				flash[:error] = 'All fields are required'
+				redirect_to new_user_listing_path(current_user)
 			end
 		end
 	end
@@ -37,15 +39,18 @@ class ListingsController < ApplicationController
 	def update
 		@listing = Listing.find_by(id: params[:id], user_id: current_user.id)
 		if @listing.update(listing_params)
-			redirect_to listing_path(@listing), success: 'Listing updated'
+			flash[:success] = 'Listing updated'
+			redirect_to listing_path(@listing)
 		else
-			redirect_to edit_user_listing_path(current_user, @listing), error: 'Update failed'
+			flash[:error] = 'Update failed'
+			redirect_to edit_user_listing_path(current_user, @listing)
 		end
 	end
 
 	def destroy 
 		Listing.find_by(id: params[:id], user_id: current_user.id).destroy
-		redirect_to user_listings_path(current_user), success: 'Listing removed'
+		flash[:success] = 'Listing removed'
+		redirect_to user_listings_path(current_user)
 	end
 
 	def search

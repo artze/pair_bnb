@@ -87,8 +87,8 @@
 	<%= hidden_field_tag "listing[tag_ids][]", nil %>
 	<div class="input-group">
 		<% Tag.all.each do |t| %>
-		<%= check_box_tag "listing[tag_ids][]", t.id, @listing.tag_ids.include?(t.id) %>
-		<%= t.tag_name %> <br>
+		<%= check_box_tag "listing[tag_ids][]", t.id, @listing.tag_ids.include?(t.id), id: dom_id(t) %>
+		<%= label_tag(dom_id(t), t.tag_name) %> <br>
 		<% end %>
 	</div>
 </div>
