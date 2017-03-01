@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :listing
-  has_one :transaction
+  has_one :payment
   validate :booking_start_date_in_future, :booking_end_date_after_booking_start_date
   enum status: [ :pending, :confirmed ]
   before_save :default_status

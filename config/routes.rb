@@ -23,6 +23,4 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  post 'transactions/checkout'
-
 end
