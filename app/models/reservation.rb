@@ -4,11 +4,6 @@ class Reservation < ApplicationRecord
   has_one :payment
   validate :booking_start_date_in_future, :booking_end_date_after_booking_start_date
   enum status: [ :pending, :confirmed ]
-  before_save :default_status
-
-  def default_status
-  	self.status = 0
-  end
 
   def check_reservation_dates
 		self.listing.reservations.each do |reservation|

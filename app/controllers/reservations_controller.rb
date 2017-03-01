@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 	def index
 		@reservations = Reservation.where(user_id: current_user.id)
-		flash.now[:notice] = 'You have not made any bookings' if @reservations.nil?
+		flash.now[:notice] = 'You have not made any bookings' if @reservations.empty?
 	end
 
 	def show
@@ -18,8 +18,8 @@ class ReservationsController < ApplicationController
 		if @reservation.check_reservation_dates
 			if @reservation.save
 				ReservationMailerJob.perform_later(current_user, @reservation)
-				flash[:success] = 'You have successfully booked the property below!'
-				redirect_to listing_path(params[:listing_id])
+				flash[:success] = 'You have reserved the property. Pay to secure booking.'
+				redirect_to new_reservation_payment_path(@reservation)
 			else
 				flash[:error] = @reservation.errors[:reservation_dates].first
 				redirect_to new_listing_reservation_path
@@ -33,6 +33,6 @@ class ReservationsController < ApplicationController
 	private
 
 	def reservation_params
-		params[:reservation].permit(:user_id, :listing_id, :booking_start, :booking_end)
+		params[:reservation].permit(:user_id, :listing_id, :booking_start, :booking_end, :status)
 	end
 end
