@@ -4,7 +4,7 @@ class UsersController < Clearance::UsersController
 		User.non_facebook_signup
 		new_user = User.new(user_params)
 		if new_user.save
-			UserMailer.sign_up_email(new_user).deliver_later
+			SignUpMailerJob.perform_later(new_user)
 			sign_in(new_user)
 			redirect_to root_path
 		else

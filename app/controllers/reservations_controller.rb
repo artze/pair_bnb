@@ -17,7 +17,7 @@ class ReservationsController < ApplicationController
 		@reservation.listing_id = params[:listing_id]
 		if @reservation.check_reservation_dates
 			if @reservation.save
-				UserMailer.reservation_email(current_user, @reservation).deliver_later
+				ReservationMailerJob.perform_later(current_user, @reservation)
 				flash[:success] = 'You have successfully booked the property below!'
 				redirect_to listing_path(params[:listing_id])
 			else
