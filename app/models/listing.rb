@@ -9,8 +9,10 @@ class Listing < ApplicationRecord
   include PgSearch
   pg_search_scope :search_by_city, 
                   against: :city,
-                  :using => {
-                    :trigram => {}
+                  using: {
+                    trigram: {
+                      threshold: 0.2
+                    }
                   }
 
 	def self.search(search_query)
