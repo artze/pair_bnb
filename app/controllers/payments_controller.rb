@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
 	end
 
 	def checkout
-    selected_reservation = Reservation.find_by(id: params[:reservation_id])
+    selected_reservation = Reservation.find_by(id: params[:reservation_id], user_id: current_user.id)
     amount_due = (selected_reservation.booking_end - selected_reservation.booking_start) * selected_reservation.listing.price
 		nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
 
