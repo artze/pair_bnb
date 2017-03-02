@@ -22,4 +22,10 @@ Rails.application.routes.draw do
     resource :reservation, only: [:new, :create]
     get 'search', on: :collection
   end
+
+  resources :reservations, only: [] do
+    resource :payment, only: [:new]
+    post 'payment/checkout', to: 'payments#checkout'
+  end
+
 end
