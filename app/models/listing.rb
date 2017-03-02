@@ -7,8 +7,11 @@ class Listing < ApplicationRecord
   mount_uploaders :images, ImageUploader
 
   include PgSearch
-  pg_search_scope :search_by_city, 
-                  against: :city,
+  pg_search_scope :search_by_location, 
+                  against: {
+                    city: 'A',
+                    country: 'B'
+                    },
                   using: {
                     trigram: {
                       threshold: 0.2
@@ -17,6 +20,6 @@ class Listing < ApplicationRecord
 
 	def self.search(search_query)
 	 # where('LOWER(city) LIKE ?', "#{search_query.downcase}%")
-   search_by_city(search_query)
+   search_by_location(search_query)
 	end  
 end
