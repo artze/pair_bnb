@@ -14,12 +14,22 @@ class Listing < ApplicationRecord
                     },
                   using: {
                     trigram: {
-                      threshold: 0.2
+                      threshold: 0.1
                     }
                   }
 
-	def self.search(search_query)
+  pg_search_scope :search_by_tags,
+                  associated_against: {
+                    listings_tags: :tag_id
+                  }
+
+	def self.search(search_query, tags_arr)
 	 # where('LOWER(city) LIKE ?', "#{search_query.downcase}%")
-   search_by_location(search_query)
-	end  
+    if tags_arr.nil?
+      search_by_location(search_query)
+    else
+      search_by_location(search_query).search_by_tags(tags_arr.join(' '))
+    end
+	end
+
 end
