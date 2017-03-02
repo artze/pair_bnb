@@ -1,0 +1,38 @@
+<div class="col-md-8 col-md-offset-2">
+	<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+    	Your reservation at <%= @reservation.listing.title %>
+    </h3>
+  </div>
+  <div class="panel-body">
+  	<strong>Address</strong>
+    <address> 
+    	<%= @reservation.listing.street_address %>, <br>
+    	<%= @reservation.listing.postcode  + ' ' + @reservation.listing.city %> <br>
+    	<%= @reservation.listing.country %>
+		</address>
+
+		<p>
+		<strong>Check-in</strong> <br>
+		<%= @reservation.booking_start.strftime('%a') + ', ' + @reservation.booking_start.strftime('%d') + ' ' + @reservation.booking_start.strftime('%b') + ' ' + @reservation.booking_start.strftime('%Y') %>
+		</p>
+
+		<p>
+		<strong>Check-out</strong> <br>
+		<%= @reservation.booking_end.strftime('%a') + ', ' + @reservation.booking_end.strftime('%d') + ' ' + @reservation.booking_end.strftime('%b') + ' ' + @reservation.booking_end.strftime('%Y') %>
+		</p>
+
+		<p>
+		<strong>Status</strong> <br>
+		<% if reservation_status(@reservation) %>
+			<h4><span class="label label-success">Confirmed</span></h4>
+		<% else %>
+			<h4><span class="label label-danger">Payment pending</span></h4>
+			<a href="<%= new_reservation_payment_path(@reservation) %>">Make payment</a>
+		<% end %>
+		</p>
+
+  </div>
+</div>
+</div>
