@@ -54,7 +54,7 @@ class ListingsController < ApplicationController
 	end
 
 	def search
-		@listings = Listing.search(params[:country_search]).paginate(page: params[:page], per_page: 10)
+		@listings = Listing.search(params[:location_search], params[:tag_ids]).paginate(page: params[:page], per_page: 10)
 		flash.now[:notice] = 'Your search query did not return any results' if @listings.empty?
 		render 'listings/index'
 	end

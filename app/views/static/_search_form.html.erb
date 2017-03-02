@@ -1,5 +1,31 @@
-<%= form_tag(search_listings_path, method: 'get') do %>
-	<%= label_tag(:search_field, 'Country') %>
-	<%= text_field_tag(:country_search) %>
-	<%= submit_tag("Search") %>
+<%= form_tag(search_listings_path, method: 'get', class: 'form-horizontal col-md-10 col-md-offset-2') do %>
+	<div class="form-group">
+		<%= label_tag(:location_search_field, 'Location', class: 'col-md-2 control-label') %>
+		<div class="col-md-6">
+			<%= text_field_tag(:location_search, nil, class: 'form-control') %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-6">
+			<label>Filter results by:</label>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-6">
+			<% Tag.all.each do |t| %>
+				<div class="checkobx">
+					<%= check_box_tag "tag_ids[]", t.id, nil, id:dom_id(t) %>
+					<%= label_tag(dom_id(t), t.tag_name) %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-6">
+			<%= submit_tag("Search", class: 'btn pull-right') %>
+		</div>
+	</div>
 <% end %>
