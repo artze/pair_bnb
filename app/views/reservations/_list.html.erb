@@ -1,7 +1,14 @@
 <% @reservations.each do |reservation| %>
 	<tr>
 		<td> <a href="<%= user_reservation_path(current_user, reservation) %>"><%= reservation.listing.title %> </a></td>
-		<td><%= reservation.booking_start %></td>
-		<td><%= reservation.booking_end %></td>
+		<td> <%= reservation.booking_start.strftime('%d %b %Y') %> </td>
+		<td> <%= reservation.booking_end.strftime('%d %b %Y') %> </td>
+		<td>
+			<% if reservation_status(reservation) %>
+				<h4><span class="label label-success">Confirmed</span></h4>
+			<% else %>
+				<h4><span class="label label-danger">Payment pending</span></h4>
+			<% end %>
+		</td>
 	</tr>
 <% end %>

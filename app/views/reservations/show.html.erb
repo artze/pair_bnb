@@ -15,12 +15,12 @@
 
 		<p>
 		<strong>Check-in</strong> <br>
-		<%= @reservation.booking_start.strftime('%a') + ', ' + @reservation.booking_start.strftime('%d') + ' ' + @reservation.booking_start.strftime('%b') + ' ' + @reservation.booking_start.strftime('%Y') %>
+		<%= @reservation.booking_start.strftime('%a, %d %b %Y') %>
 		</p>
 
 		<p>
 		<strong>Check-out</strong> <br>
-		<%= @reservation.booking_end.strftime('%a') + ', ' + @reservation.booking_end.strftime('%d') + ' ' + @reservation.booking_end.strftime('%b') + ' ' + @reservation.booking_end.strftime('%Y') %>
+		<%= @reservation.booking_end.strftime('%a, %d %b %Y') %>
 		</p>
 
 		<p>
