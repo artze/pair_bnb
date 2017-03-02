@@ -1,5 +1,5 @@
 <%= form_tag(search_listings_path, method: 'get') do %>
-	<%= label_tag(:search_field, 'Country') %>
-	<%= text_field_tag(:country_search) %>
+	<%= label_tag(:city_search_field, 'City') %>
+	<%= text_field_tag(:city_search) %>
 	<%= submit_tag("Search") %>
 <% end %>

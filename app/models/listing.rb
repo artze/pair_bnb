@@ -7,9 +7,14 @@ class Listing < ApplicationRecord
   mount_uploaders :images, ImageUploader
 
   include PgSearch
-  pg_search_scope :search_by_city, against: :city, using: :trigram
+  pg_search_scope :search_by_city, 
+                  against: :city,
+                  :using => {
+                    :trigram => {}
+                  }
 
-	# def self.search(search_query)
-	# 	where('LOWER(country) LIKE ?', "%#{search_query.downcase}%")
-	# end  
+	def self.search(search_query)
+	 # where('LOWER(city) LIKE ?', "#{search_query.downcase}%")
+   search_by_city(search_query)
+	end  
 end
