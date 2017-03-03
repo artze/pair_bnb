@@ -1,10 +1,13 @@
 class PaymentsController < ApplicationController
+  before_action :require_login
+  before_action :redirect, unless: :payment_authority
+
 	def new
 		gon.client_token = Braintree::ClientToken.generate
 	end
 
 	def checkout
-    selected_reservation = Reservation.find_by(id: params[:reservation_id], user_id: current_user.id)
+    selected_reservation = Reservation.find_by(id: params[:reservation_id])
     amount_due = (selected_reservation.booking_end - selected_reservation.booking_start) * selected_reservation.listing.price
 		nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
 
@@ -26,4 +29,14 @@ class PaymentsController < ApplicationController
   		redirect_to new_reservation_payment_path(selected_reservation), flash: { error: 'Transaction failed. Please try again.' }
   	end
 	end
+
+  private
+
+  def payment_authority
+    Reservation.find_by(id: params[:reservation_id]).user == current_user
+  end
+
+  def redirect
+    redirect_to root_path, flash: { error: 'Permission denied' }
+  end
 end
