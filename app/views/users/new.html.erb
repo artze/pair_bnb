@@ -1,17 +1,23 @@
 <div id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="text-center"><%= t(".title") %></h2>
+  </div>
 
-  <%= form_for @user, remote: true do |form| %>
+  <%= form_for @user, html: { class: 'form-horizontal col-md-8 col-md-offset-2' }, remote: true do |form| %>
     <%= render partial: '/users/form', object: form %>
     
     <div class="user-error"></div>
 
-    <div class="submit-field">
-      <%= form.submit %>
+    <div class="form-group">
+      <div class="submit-field col-md-8 col-md-offset-2">
+        <%= form.submit class: 'btn' %>
+      </div>
     </div>
 
-    <div class="other-links">
-      <%= link_to 'Already a member?', sign_in_path %>
+    <div class="form-group">
+      <div class="other-links col-md-8 col-md-offset-2">
+        <%= link_to 'Already a member?', sign_in_path %>
+      </div>
     </div>
   <% end %>
 </div>
