@@ -1,3 +1,8 @@
+<%= content_for :head do %>
+	<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js' %>
+	<%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css' %>
+<% end %>
+
 <div class="col-md-10 col-md-offset-2">
 	<div class="col-md-offset-2">
 		<% selected_listing = Listing.find_by(id: params[:listing_id]) %>
