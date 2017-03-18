@@ -1,6 +1,6 @@
 <% content_for :head do %>
 	<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js' %>
-	<%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css' %>
+	<%= javascript_include_tag '/javascripts/lib/reservation-datepicker.js' %>
 <% end %>
 
 <div class="col-md-8 col-md-offset-2">
@@ -12,31 +12,9 @@
 		<p>Contact the owner: <%= mail_to selected_listing.user.email, selected_listing.user.first_name + ' ' + selected_listing.user.last_name %> </p>
 	</div>
 
-
 	<div class="row">
 		<%= form_for @reservation, url: listing_reservation_path, html: { class: 'form-horizontal col-md-8 col-md-offset-2 reservation-form-box' } do |f| %>
 			<%= render partial: '/reservations/form', locals: {f: f}%>
 		<% end %>
 	</div>
 </div>
-
-<script>
-	$(document).on('turbolinks:load', function() {
-		var today = new Date();
-
-		$('#check-in-date').datepicker({
-			format: 'D, dd M yyyy',
-			startDate: 'new Date',
-			autoclose: true,
-		}).datepicker('setDate', today).datepicker('update');
-
-		var inThreeDays = new Date(today.getTime() + (3 * 86400000));
-
-		$('#check-out-date').datepicker({
-			format: 'D, dd M yyyy',
-			autoclose: true,
-			defaultViewDate: {year: 2017, month: 03, day: 21}
-		}).datepicker('setDate', inThreeDays).datepicker('update');
-	})
-
-</script>
