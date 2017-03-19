@@ -4,11 +4,7 @@
 		<td> <%= reservation.booking_start.strftime('%d %b %Y') %> </td>
 		<td> <%= reservation.booking_end.strftime('%d %b %Y') %> </td>
 		<td>
-			<% if reservation_status(reservation) %>
-				<h4><span class="label label-success">Confirmed</span></h4>
-			<% else %>
-				<h4><span class="label label-danger">Payment pending</span></h4>
-			<% end %>
+			<h4><span class="label label-<%= display_reservation_status(reservation)[:badge_class] %>"> <%= display_reservation_status(reservation)[:display] %> </span></h4>
 		</td>
 	</tr>
 <% end %>
