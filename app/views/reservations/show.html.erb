@@ -1,38 +1,58 @@
 <div class="col-md-8 col-md-offset-2">
-	<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-    	Your reservation at <%= @reservation.listing.title %>
-    </h3>
-  </div>
-  <div class="panel-body">
-  	<strong>Address</strong>
-    <address> 
-    	<%= @reservation.listing.street_address %>, <br>
-    	<%= @reservation.listing.postcode  + ' ' + @reservation.listing.city %> <br>
-    	<%= @reservation.listing.country %>
-		</address>
+	<div class="panel panel-info">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">
+	    	Your reservation at <%= @reservation.listing.title %>
+	    </h3>
+	  </div>
+	  <div class="panel-body">
+	  	<strong>Address</strong>
+	    <address> 
+	    	<%= @reservation.listing.street_address %>, <br>
+	    	<%= @reservation.listing.postcode  + ' ' + @reservation.listing.city %> <br>
+	    	<%= @reservation.listing.country %>
+			</address>
 
-		<p>
-		<strong>Check-in</strong> <br>
-		<%= @reservation.booking_start.strftime('%a, %d %b %Y') %>
-		</p>
+			<p>
+				<strong>Check-in</strong> <br>
+				<%= @reservation.booking_start.strftime('%a, %d %b %Y') %>
+				</p>
 
-		<p>
-		<strong>Check-out</strong> <br>
-		<%= @reservation.booking_end.strftime('%a, %d %b %Y') %>
-		</p>
+			<p>
+				<strong>Check-out</strong> <br>
+				<%= @reservation.booking_end.strftime('%a, %d %b %Y') %>
+				</p>
 
-		<p>
-		<strong>Status</strong> <br>
-		<% if reservation_status(@reservation) %>
-			<h4><span class="label label-success">Confirmed</span></h4>
-		<% else %>
-			<h4><span class="label label-danger">Payment pending</span></h4>
-			<a href="<%= new_reservation_payment_path(@reservation) %>">Make payment</a>
+			<p>
+				<strong>Status</strong> <br>
+				<h4><span class="label label-<%=display_reservation_status(@reservation)[:badge_class] %>"> <%= display_reservation_status(@reservation)[:display] %></span></h4>
+				<a href="<%= new_reservation_payment_path(@reservation) %>">Make payment</a>
+			</p>
+	  </div>
+	  <% if @reservation.pending? %>
+		  <ul class="list-group">
+		  	<li class="list-group-item text-center">
+		  		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Cancel Reservation</button>
+		  	</li>
+		  </ul>
 		<% end %>
-		</p>
-
-  </div>
+	</div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+      	Cancellations cannot be undone. We are sorry to see you go :(
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to 'Cancel Reservation', user_reservation_path(current_user, @reservation), method: :delete, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
 </div>

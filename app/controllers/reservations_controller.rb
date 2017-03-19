@@ -32,6 +32,12 @@ class ReservationsController < ApplicationController
 		end
 	end
 
+	def destroy
+		Reservation.find_by(id: params[:id], user_id: current_user.id).destroy
+		flash[:success] = 'Reservation cancelled'
+		redirect_to user_reservations_path(current_user)
+	end
+
 	private
 
 	def reservation_params
