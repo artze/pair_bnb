@@ -1,3 +1,8 @@
+
+<div class="jumbotron">
+	<%= image_tag @listing.images.first.url %>
+</div>
+
 <p>Owner: <%= @listing.user.first_name + ' ' + @listing.user.last_name %> </p>
 <p>Title: <%= @listing.title %> </p>
 <p>Description: <%= @listing.description %> </p>
@@ -14,3 +19,5 @@
 	<li> <%= elm.tag_name %> </li>
 	<% end %>
 </ul>
+
+<%= link_to 'Book now', new_listing_reservation_path(@listing.id), class: 'btn btn-primary pull-right' %>

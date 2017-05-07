@@ -50,14 +50,14 @@
 <div class="form-group">
 	<%= f.label :home_type, class: "col-md-3 control-label" %>
 	<div class="col-md-9">
-		<%= f.select(:home_type, options_for_select([['House', 1], ['Apartment', 2], ['Villa', 3], ['Condominium', 4]], 1), {}, {class: "form-control"}) %>
+		<%= f.select(:home_type, options_for_select(['House', 'Apartment', 'Villa', 'Condominium'], 'House'), {}, {class: "form-control"}) %>
 	</div>
 </div class="form-group">
 
 <div class="form-group">
 	<%= f.label :room_type, class: "col-md-3 control-label" %>
 	<div class="col-md-9">
-		<%= f.select(:room_type, options_for_select([['shared', 1], ['private', 2], ['entire property', 3]], 1), {}, {class: "form-control"}) %>
+		<%= f.select(:room_type, options_for_select(['Shared Room', 'Private Room', 'Entire Home'], 'Shared Room'), {}, {class: "form-control"}) %>
 	</div>
 </div>
 

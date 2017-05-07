@@ -5,8 +5,8 @@
 				<%= image_tag img.url(:thumb) %>
 			<% end %>
 		</div>
-		<h3> <%= l.title %> </h3>
- 		<p><strong> $ <%= sprintf('%.2f', l.price) %> a night </strong></p>
+		<h3><strong><a href="<%= listing_path(l) %>"> <%= l.title %> </a></strong></h3>
+ 		<p><strong> $ <%= sprintf('%.2f', l.price) %> per night </strong></p>
 		<p>Address: <%= l.street_address + ', ' + l.postcode + ' ' + l.city + ', ' + l.country %> </p>
 		<p>Type: <%= l.home_type %> </p>
 		<p> <%= l.room_type %>, <%= l.accommodate %> guest(s) </p>
@@ -15,8 +15,8 @@
 			Amenities:
 			<% arr = l.tags.map { |tag| tag.tag_name } %>
 			<%= arr.join(' + ') %>
+		<%= link_to 'Book now', new_listing_reservation_path(l), class: 'btn btn-primary pull-right' %>
 		</p>
-		<%= link_to 'Book now', new_listing_reservation_path(l) %>
 		<%= link_to 'Edit listing', edit_user_listing_path(current_user, l) if l.user.id == current_user.id %>
 		<%= link_to 'Remove listing', user_listing_path(current_user, l), method: :delete if l.user.id == current_user.id %>
 	</div>
