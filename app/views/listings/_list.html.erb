@@ -1,8 +1,10 @@
 <% @listings.each do |l| %>
 	<div class="listing-card">
 		<div>
-			<% l.images.each do |img| %>
-				<%= image_tag img.url(:thumb) %>
+			<% if l.images.first %>
+				<%= image_tag l.images.first.url(:thumb) %>
+			<% else %>
+				<%= image_tag("fallback/default.png", width: '200') %>
 			<% end %>
 		</div>
 		<h3><strong><a href="<%= listing_path(l) %>"> <%= l.title %> </a></strong></h3>
