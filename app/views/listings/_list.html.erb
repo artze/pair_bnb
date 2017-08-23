@@ -22,6 +22,6 @@
 			<%= link_to 'Edit listing', edit_user_listing_path(current_user, l) if l.user.id == current_user.id %>
 			<%= link_to 'Remove listing', user_listing_path(current_user, l), method: :delete if l.user.id == current_user.id %>
 		</div>
-		<%= link_to 'Book now', new_listing_reservation_path(l), class: 'btn btn-primary book-btn' %>
+		<%= link_to 'Book now', new_listing_reservation_path(l), class: 'btn btn-primary index-book-btn' %>
 	</div>
 <% end %>

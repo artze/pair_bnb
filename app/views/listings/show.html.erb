@@ -1,16 +1,17 @@
-<div class="jumbotron">
+<div class="jumbotron text-center">
 	<% if @listing.images.first %>
 		<%= image_tag @listing.images.first.url %>
 	<% else %>
 		<%= image_tag("fallback/default.png") %>
 	<% end %>
 </div>
-<div class="col-lg-8 col-lg-offset-2">
+<div class="col-lg-6 col-lg-offset-3 show-listing-desc">
+	<h3><%= @listing.title %></h3>
+	<%= link_to 'Book now', new_listing_reservation_path(@listing.id), class: 'btn btn-primary show-book-btn' %>
+	<p>Address: <%= @listing.street_address + ', ' + @listing.postcode + ' ' + @listing.city + ', ' + @listing.country %> </p>
 	<p>Owner: <%= @listing.user.first_name + ' ' + @listing.user.last_name %> </p>
-	<p>Title: <%= @listing.title %> </p>
 	<p>Description: <%= @listing.description %> </p>
 	<p>Price: <%= @listing.price %> </p>
-	<p>Address: <%= @listing.street_address + ', ' + @listing.postcode + ' ' + @listing.city + ', ' + @listing.country %> </p>
 	<p>Type: <%= @listing.home_type %> </p>
 	<p>Room type: <%= @listing.room_type %> </p>
 	<p>Number of Bedrooms: <%= @listing.bedroom %> </p>
@@ -23,5 +24,4 @@
 		<% end %>
 	</ul>
 
-	<%= link_to 'Book now', new_listing_reservation_path(@listing.id), class: 'btn btn-primary pull-right' %>
 </div>

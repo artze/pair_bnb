@@ -27,8 +27,26 @@
 	margin-left: 5%;
 }
 
-.book-btn {
+.index-book-btn {
 	position: absolute;
 	right: 30px;
 	bottom: 15px;
+}
+
+.jumbotron {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.show-listing-desc {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.show-book-btn {
+	position: absolute;
+	right: 30px;
+	top: 20px;
 }
