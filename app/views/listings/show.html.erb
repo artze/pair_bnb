@@ -1,6 +1,10 @@
 
 <div class="jumbotron">
-	<%= image_tag @listing.images.first.url %>
+	<% if @listing.images.first %>
+		<%= image_tag @listing.images.first.url %>
+	<% else %>
+		<%= image_tag("fallback/default.png") %>
+	<% end %>
 </div>
 
 <p>Owner: <%= @listing.user.first_name + ' ' + @listing.user.last_name %> </p>
