@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-	<% if @listing.images.first %>
+	<% if @listing.images? %>
 		<%= image_tag @listing.images.first.url %>
 	<% else %>
 		<%= image_tag("fallback/default.png") %>
