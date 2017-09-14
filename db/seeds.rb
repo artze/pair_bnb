@@ -9,6 +9,7 @@
 Authentication.delete_all
 ListingsTag.delete_all
 Tag.delete_all
+Payment.delete_all
 Reservation.delete_all
 Listing.delete_all
 User.delete_all
@@ -43,7 +44,7 @@ ActiveRecord::Base.transaction do
 		listing['city'] = Faker::Address.city
 		listing['country'] = Faker::Address.country
 		listing['home_type'] = ['House', 'Apartment', 'Villa', 'Condominium'].sample
-		listing['room_type'] = ['shared', 'private', 'entire property'].sample
+		listing['room_type'] = ['Shared Room', 'Private Room', 'Entire Home'].sample
 		listing['bedroom'] = rand(1..3)
 		listing['bathroom'] = rand(1..3)
 		listing['accommodate'] = rand(1..5)

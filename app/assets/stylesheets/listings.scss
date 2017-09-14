@@ -5,3 +5,48 @@
 .listing-form-box {
 	padding: 30px;
 }
+
+.listing-card {
+	border: 1px solid #ABABAB;
+	border-radius: 4px;
+	margin-top: 1.5em;
+	padding: 0.5em 3em 1.5em 2em;
+	display: flex;
+	jusify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.listing-index-img {
+	display: inline-block;
+	float: left;
+}
+
+.listing-index-text {
+	display: inline-block;
+	margin-left: 5%;
+}
+
+.index-book-btn {
+	position: absolute;
+	right: 30px;
+	bottom: 15px;
+}
+
+.jumbotron {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.show-listing-desc {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.show-book-btn {
+	position: absolute;
+	right: 30px;
+	top: 20px;
+}

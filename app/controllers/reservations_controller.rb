@@ -1,11 +1,13 @@
 class ReservationsController < ApplicationController
+	before_action :redirect, unless: :reservation_authority, only: [:index, :show]
+
 	def index
 		@reservations = Reservation.where(user_id: current_user.id)
 		flash.now[:notice] = 'You have not made any bookings' if @reservations.empty?
 	end
 
 	def show
-
+		@reservation = Reservation.find_by(id: params[:id])
 	end
 
 	def new
@@ -30,9 +32,24 @@ class ReservationsController < ApplicationController
 		end
 	end
 
+	def destroy
+		Reservation.find_by(id: params[:id], user_id: current_user.id).destroy
+		flash[:success] = 'Reservation cancelled'
+		redirect_to user_reservations_path(current_user)
+	end
+
 	private
 
 	def reservation_params
 		params[:reservation].permit(:user_id, :listing_id, :booking_start, :booking_end, :status)
 	end
+
+	def reservation_authority
+		params[:user_id].to_i == current_user.id
+	end
+
+	def redirect
+		redirect_to root_path, flash: { error: 'Permission denied' }
+	end
+
 end

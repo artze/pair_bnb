@@ -10,4 +10,5 @@ CarrierWave.configure do |config|
   }
   config.fog_directory  = "pairbnbimageupload"
   config.fog_public     = false
+
 end

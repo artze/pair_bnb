@@ -1,4 +1,7 @@
 class PaymentsController < ApplicationController
+  before_action :require_login
+  before_action :redirect, unless: :payment_authority
+
 	def new
 		gon.client_token = Braintree::ClientToken.generate
 	end
@@ -10,6 +13,7 @@ class PaymentsController < ApplicationController
 
   	result = Braintree::Transaction.sale(
   		amount: amount_due.to_s,
+      # amount: '5001.00',
   		payment_method_nonce: nonce_from_the_client,
   		options: {
   			submit_for_settlement: true
@@ -20,9 +24,19 @@ class PaymentsController < ApplicationController
       selected_reservation.confirmed!
       @payment = Payment.new(reservation_id: selected_reservation.id, total_amount: amount_due)
       @payment.save
-  		redirect_to :root, flash: { success: 'Transaction successful!' }
+  		redirect_to user_reservation_path(current_user, selected_reservation), flash: { success: 'Transaction successful!' }
   	else
-  		redirect_to :root, flash: { error: 'Transaction failed. Please try again.' }
+  		redirect_to new_reservation_payment_path(selected_reservation), flash: { error: 'Transaction failed. Please try again.' }
   	end
 	end
+
+  private
+
+  def payment_authority
+    Reservation.find_by(id: params[:reservation_id]).user == current_user
+  end
+
+  def redirect
+    redirect_to root_path, flash: { error: 'Permission denied' }
+  end
 end

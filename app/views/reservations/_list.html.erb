@@ -1,7 +1,10 @@
 <% @reservations.each do |reservation| %>
 	<tr>
-		<td><%= reservation.listing.title %></td>
-		<td><%= reservation.booking_start %></td>
-		<td><%= reservation.booking_end %></td>
+		<td> <a href="<%= user_reservation_path(current_user, reservation) %>"><%= reservation.listing.title %> </a></td>
+		<td> <%= reservation.booking_start.strftime('%d %b %Y') %> </td>
+		<td> <%= reservation.booking_end.strftime('%d %b %Y') %> </td>
+		<td>
+			<h4><span class="label label-<%= display_reservation_status(reservation)[:badge_class] %>"> <%= display_reservation_status(reservation)[:display] %> </span></h4>
+		</td>
 	</tr>
 <% end %>

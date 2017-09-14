@@ -2,8 +2,10 @@
 <html>
 <head>
   <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag params[:controller] if PairBnb::Application.assets.find_asset("#{params[:controller]}.css") %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
+  <%= yield :head %>
 </head>
 <body>
   <div id="header">
@@ -17,7 +19,7 @@
     <div class="<%= flash_class(key) %>"> <%= value %> </div>
   <% end %>
 
-  <div class="container">
+  <div class="container-fluid">
     <%= yield %>
   </div>
   <script src='/javascripts/lib/navbar.js'></script>

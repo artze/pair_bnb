@@ -1,19 +1,19 @@
-<%= form_tag(search_listings_path, method: 'get', class: 'form-horizontal col-md-10 col-md-offset-2') do %>
+<%= form_tag(search_listings_path, method: 'get', class: 'form-horizontal col-lg-6 col-lg-offset-3') do %>
 	<div class="form-group">
-		<%= label_tag(:location_search_field, 'Location', class: 'col-md-2 control-label') %>
-		<div class="col-md-6">
+		<%= label_tag(:location_search_field, 'Location', class: 'col-lg-2 control-label') %>
+		<div class="col-lg-8">
 			<%= text_field_tag(:location_search, nil, class: 'form-control') %>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-offset-2 col-md-6">
+		<div class="col-lg-offset-2 col-lg-6">
 			<label>Filter results by:</label>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-offset-2 col-md-6">
+		<div class="col-lg-offset-2 col-lg-6">
 			<% Tag.all.each do |t| %>
 				<div class="checkobx">
 					<%= check_box_tag "tag_ids[]", t.id, nil, id:dom_id(t) %>
@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-offset-2 col-md-6">
+		<div class="col-lg-10">
 			<%= submit_tag("Search", class: 'btn pull-right') %>
 		</div>
 	</div>

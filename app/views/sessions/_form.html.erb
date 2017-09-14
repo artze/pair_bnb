@@ -1,22 +1,30 @@
-<%= form_for :session, url: session_path, html: {id: "new_session"}, remote: true do |form| %>
-  <div class="text-field">
-    <%= form.label :email %>
-    <%= form.text_field :email, type: 'text' %>
+<%= form_for :session, url: session_path, html: {id: 'new_session', class: 'form-horizontal col-md-8 col-md-offset-2'}, remote: true do |form| %>
+  <div class="text-field form-group">
+    <%= form.label :email, class: 'col-md-2 control-label' %>
+    <div class="col-md-8">
+      <%= form.text_field :email, type: 'text', class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="password-field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+  <div class="password-field form-group">
+    <%= form.label :password, class: 'col-md-2 control-label' %>
+    <div class="col-md-8">
+      <%= form.password_field :password, class: 'form-control' %>
+    </div>
   </div>
 
   <div class="user-error"></div>
 
-  <div class="submit-field">
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="submit-field col-md-8 col-md-offset-2">
+      <%= form.submit class: 'btn' %>
+    </div>
   </div>
 
-  <div class="other-links">
-    <%= link_to 'Not a member?', sign_up_path %> <br>
-    <%= link_to t(".forgot_password"), new_password_path %>
+  <div class="form-group">
+    <div class="other-links col-md-8 col-md-offset-2">
+      <%= link_to 'Not a member?', sign_up_path %> <br>
+      <%= link_to t(".forgot_password"), new_password_path %>
+    </div>
   </div>
 <% end %>

@@ -1,15 +1,20 @@
-<br>
-
-<div>
-<% selected_listing = Listing.find_by(id: params[:listing_id]) %>
-You are about to book: <%= selected_listing.title %> <br>
-Owner of this property: <%= selected_listing.user.first_name + ' ' + selected_listing.user.last_name %>
-</div>
-<br>
-<%= form_for @reservation, url: listing_reservation_path do |f| %>
-	<%= render partial: '/reservations/form', locals: {f: f}%>
-	
-	<div>
-		<%= f.submit 'Book now', class: 'btn' %>
-	</div>
+<% content_for :head do %>
+	<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js' %>
+	<%= javascript_include_tag '/javascripts/lib/reservation-datepicker.js' %>
 <% end %>
+
+<div class="col-md-8 col-md-offset-2">
+
+	<div class="col-md-offset-3">
+		<% selected_listing = Listing.find_by(id: params[:listing_id]) %>
+		<h3><%= selected_listing.title %></h3>
+		<p><%= selected_listing.street_address + ', ' + selected_listing.postcode + ' ' + selected_listing.city + ', ' + selected_listing.country %></p>
+		<p>Contact the owner: <%= mail_to selected_listing.user.email, selected_listing.user.first_name + ' ' + selected_listing.user.last_name %> </p>
+	</div>
+
+	<div class="row">
+		<%= form_for @reservation, url: listing_reservation_path, html: { class: 'form-horizontal col-md-8 col-md-offset-2 reservation-form-box' } do |f| %>
+			<%= render partial: '/reservations/form', locals: {f: f}%>
+		<% end %>
+	</div>
+</div>

@@ -1,3 +1,5 @@
-// Place all the styles related to the reservations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css";
+
+.reservation-form-box {
+	padding: 20px;
+}

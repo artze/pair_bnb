@@ -1,27 +1,27 @@
 <% @listings.each do |l| %>
-	<div>
-		<% l.images.each do |img| %>
-			<%= image_tag img.url(:thumb) %>
-		<% end %>
+	<div class="listing-card">
+		<div class="listing-index-img">
+			<% if l.images.first %>
+				<%= image_tag l.images.first.url(:thumb) %>
+			<% else %>
+				<%= image_tag("fallback/default.png", width: '200') %>
+			<% end %>
+		</div>
+		<div class="listing-index-text">
+			<h3><strong><a href="<%= listing_path(l) %>"> <%= l.title %> </a></strong></h3>
+	 		<p><strong> $ <%= sprintf('%.2f', l.price) %> per night </strong></p>
+			<p>Address: <%= l.street_address + ', ' + l.postcode + ' ' + l.city + ', ' + l.country %> </p>
+			<p>Type: <%= l.home_type %> </p>
+			<p> <%= l.room_type %>, <%= l.accommodate %> guest(s) </p>
+			<p> <%= l.bedroom %> bedrooms, <%= l.bathroom %> bathrooms </p>
+			<p>
+				Amenities:
+				<% arr = l.tags.map { |tag| tag.tag_name } %>
+				<%= arr.join(' + ') %>
+			</p>
+			<%= link_to 'Edit listing', edit_user_listing_path(current_user, l) if l.user.id == current_user.id %>
+			<%= link_to 'Remove listing', user_listing_path(current_user, l), method: :delete if l.user.id == current_user.id %>
+		</div>
+		<%= link_to 'Book now', new_listing_reservation_path(l), class: 'btn btn-primary index-book-btn' %>
 	</div>
-	<p>Owner: <%= l.user.first_name + ' ' + l.user.last_name %> </p>
-	<p>Title: <%= l.title %> </p>
-	<p>Description: <%= l.description %> </p>
-	<p>Price: <%= l.price %> </p>
-	<p>Address: <%= l.street_address + ', ' + l.postcode + ' ' + l.city + ', ' + l.country %> </p>
-	<p>Type: <%= l.home_type %> </p>
-	<p>Room type: <%= l.room_type %> </p>
-	<p>Number of Bedrooms: <%= l.bedroom %> </p>
-	<p>Number of Bathrooms: <%= l.bathroom %> </p>
-	<p>Accommodates: <%= l.accommodate %> guest(s) </p>
-	<p>Tags:</p>
-	<ul>
-		<% l.tags.each do |elm| %>
-		<li> <%= elm.tag_name %> </li>
-		<% end %>
-	</ul>
-	<%= link_to 'Book now', new_listing_reservation_path(l) %>
-	<%= link_to 'Edit listing', edit_user_listing_path(current_user, l) if l.user.id == current_user.id %>
-	<%= link_to 'Remove listing', user_listing_path(current_user, l), method: :delete if l.user.id == current_user.id %>
-	<hr>
 <% end %>

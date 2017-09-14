@@ -1,3 +1,6 @@
-<%= render partial: '/listings/list' %>
-
-<%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
+<div class="col-lg-6 col-lg-offset-3">
+	<%= render partial: '/listings/list' %>
+	<div class="text-center">
+		<%= will_paginate @listings, renderer: BootstrapPagination::Rails %>
+	</div>
+</div>
